@@ -6,6 +6,13 @@
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `accessible_by` | `body` | `object` | 邀请对象 |
+| `folder_id` | `body` | `int64` | 协作文件夹id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/collab/invite' \
@@ -21,6 +28,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/collab/invite'
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `accessible_by` | `body` | `array<object>` | 邀请对象 |
+| `folder_id` | `body` | `int64` | 协作文件夹id |
 
 **Curl Command**:
 ```bash
@@ -38,6 +52,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/collab/invite_
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 协作ID |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/collab/{id}/delete' \
@@ -52,6 +72,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/collab/{id}/de
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 协作ID |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/collab/{id}/info' \
@@ -65,6 +91,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/collab/{id}/inf
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `collab_ids` | `body` | `array<int64>` | 需要被删除的协作用户（支持批量） |
+| `folder_id` | `body` | `int64` | 协作文件夹id |
 
 **Curl Command**:
 ```bash
@@ -82,6 +115,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/collab/remove'
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 协作ID |
+| `role` | `body` | `string` | 更新角色类型；coowner:共同所有者; editor:编辑者; online_collaborator:在线协作者; viewer_uploader:查看/上传者; viewer:查看者; previewer_uploader:预览+上传者; previewer:预览者; uploader:上传者; reset:禁止访问 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/collab/{id}/update' \
@@ -97,6 +137,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/collab/{id}/up
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `content` | `body` | `string` | 评论文本，长度不能超过1001个字符@[user_id:评论内容] |
+| `file_id` | `body` | `int64` | 评论文件id |
 
 **Curl Command**:
 ```bash
@@ -114,6 +161,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/comment/create
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 删除的评论id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/comment/{id}/delete' \
@@ -128,6 +181,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/comment/{id}/d
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门ID |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/department/{id}/children' \
@@ -141,6 +200,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/department/{id}
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门id |
 
 **Curl Command**:
 ```bash
@@ -170,6 +235,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/department/own_
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门ID |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/department/{id}/users' \
@@ -183,6 +254,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/department/{id}
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `device_token` | `path` | `string` | 设备token |
 
 **Curl Command**:
 ```bash
@@ -200,6 +277,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/device/{device
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `device_token` | `path` | `string` | 设备token |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/device/{device_token}/synced_status' \
@@ -213,6 +296,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/device/{device_
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `device_token` | `path` | `string` | 设备token |
 
 **Curl Command**:
 ```bash
@@ -229,6 +318,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/device/{device
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件的ID |
+| `target_folder_id` | `body` | `int64` | 目标文件夹id |
 
 **Curl Command**:
 ```bash
@@ -248,6 +344,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/file/750039075
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件的ID |
+| `target_folder_path` | `body` | `string` | 路径名，以/划分文件夹，根目录在个人文件下，文件夹名称必须是1到222个字符，并且不能含有/ ? : * " > < \|且末尾不能为“.” |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/file/75003907526/copy_by_path' \
@@ -265,6 +368,17 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/file/750039075
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `departmentId` | `body` | `int64` | 部门id |
+| `name` | `body` | `string` | 新文件文件名 |
+| `nameConflictResolveStrategy` | `body` | `string` | 命名冲突解决策略(固定传2)；2：系统自动重命名（当前仅支持这种） |
+| `parentEnterpriseId` | `body` | `int64` | 企业id，若为外协文件夹需要填写对应企业id |
+| `parentFolderId` | `body` | `int64` | 父文件夹Id |
+| `type` | `body` | `string` | 文件类型；1：doc类型; 2：ppt类型; 3：xls类型 |
 
 **Curl Command**:
 ```bash
@@ -290,6 +404,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/file/create_bl
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 删除文件的ID |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/179000000087/delete' \
@@ -303,6 +423,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/1790000
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 从回收站删除文件的ID |
 
 **Curl Command**:
 ```bash
@@ -318,6 +444,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/1790000
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件的ID |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/file/75003903551/download?version=0&valid_period=100' \
@@ -331,6 +463,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/file/7500390355
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件id |
+| `version_id` | `path` | `int64` | 文件版本id |
 
 **Curl Command**:
 ```bash
@@ -346,6 +485,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/file/7500390752
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件id |
+| `version_id` | `path` | `int64` | 文件版本id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/file/75003907526/version/75000911810/delete' \
@@ -359,6 +505,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/file/750039075
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件id |
 
 **Curl Command**:
 ```bash
@@ -374,6 +526,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/file/7500390752
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件id |
+| `version_id` | `path` | `int64` | 文件版本id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/file/75003907526/version/75000911769/promote' \
@@ -387,6 +546,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/file/750039075
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件id |
 
 **Curl Command**:
 ```bash
@@ -402,6 +567,12 @@ curl --location 'https://open.fangcloud.com/api/v2/file/75003624924/trash' \
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件id |
+
 **Curl Command**:
 ```bash
 curl --location 'https://open.fangcloud.com/api/v2/file/75003903445/info_v2' \
@@ -415,6 +586,12 @@ curl --location 'https://open.fangcloud.com/api/v2/file/75003903445/info_v2' \
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `limit` | `query` | `int32` | 获取的条数 |
 
 **Curl Command**:
 ```bash
@@ -430,6 +607,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/file/recent_ite
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/file/75003907071/comments' \
@@ -443,6 +626,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/file/7500390707
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件id |
 
 **Curl Command**:
 ```bash
@@ -458,6 +647,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/file/7500390752
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `item_id` | `path` | `int64` | 文件id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/file/126000100472/mark_as_used' \
@@ -471,6 +666,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/file/126000100
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 移动文件的ID |
+| `target_folder_id` | `body` | `int64` | 目标文件夹id |
 
 **Curl Command**:
 ```bash
@@ -493,6 +695,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/1790000
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件id |
+| `name` | `body` | `string` | 文件名称，文件名称必须是1到222个字符，并且不能含有/ ? : * " > < \ |
+| `upload_type` | `body` | `string` | 上传类型；固定传api |
 
 **Curl Command**:
 ```bash
@@ -520,6 +730,12 @@ curl --location 'https://upload01.fangcloud.com/upload/d125644c2e43449a8becbcf92
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `item_typed_ids` | `body` | `array<string>` | 文件id或文件夹id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/file/pack_download' \
@@ -541,6 +757,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/file/pack_down
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 从回收站回复的文件的ID |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/179000000087/restore_from_trash' \
@@ -554,6 +776,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/1790000
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 更新文件的ID |
 
 **Curl Command**:
 ```bash
@@ -572,6 +800,14 @@ curl --location 'https://open.fangcloud.com/api/v2/folder/179000000087/update' \
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `name` | `body` | `string` | 文件名称，文件名称必须是1到222个字符，并且不能含有/ ? : * " > < \ |
+| `target_folder_path` | `body` | `string` | 路径名，以/划分文件夹，根目录在个人文件下，文件夹名称必须是1到222个字符，并且不能含有/ ? : * " > < \|且末尾不能为“.” |
+| `upload_type` | `body` | `string` | 上传类型；固定传api |
 
 **Curl Command**:
 ```bash
@@ -600,6 +836,14 @@ curl --location 'https://upload01.fangcloud.com/upload/d125644c2e43449a8becbcf92
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `name` | `body` | `string` | 准备上传的文件的名称，文件名称必须是1到222个字符，并且不能含有/ ? : * " > < \ |
+| `parent_id` | `body` | `int64` | 上传至的文件夹id |
+| `upload_type` | `body` | `string` | 上传类型；固定传api |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/file/upload_v2' \
@@ -626,6 +870,13 @@ curl --location 'https://upload01.fangcloud.com/upload/d125644c2e43449a8becbcf92
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
+| `target_folder_id` | `body` | `int64` | 目标文件夹id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/179000000087/copy' \
@@ -643,6 +894,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/1790000
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `name` | `body` | `string` | 文件夹名，文件夹名称必须是1到222个字符，并且不能含有/ ? : * " > < \ |
+| `parent_id` | `body` | `int64` | 父文件夹id |
 
 **Curl Command**:
 ```bash
@@ -663,6 +921,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/create'
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `target_folder_path` | `body` | `string` | 路径名，以/划分文件夹，根目录在个人文件下，文件夹名称必须是1到222个字符，并且不能含有/ ? : * " > < \|且末尾不能为“.” |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/create_by_path' \
@@ -682,6 +946,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/create_
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/179000000087/delete_from_trash' \
@@ -695,6 +965,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/1790000
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
 
 **Curl Command**:
 ```bash
@@ -710,6 +986,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/1790000
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/folder/179000000087/trash' \
@@ -723,6 +1005,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/folder/17900000
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
 
 **Curl Command**:
 ```bash
@@ -752,6 +1040,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/folder/collab_f
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `department_id` | `query` | `int64` | 部门ID |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/folder/department_folders?department_id=596371' \
@@ -765,6 +1059,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/folder/departme
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
 
 **Curl Command**:
 ```bash
@@ -794,6 +1094,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/folder/personal
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/folder/203000425147/collabs' \
@@ -808,6 +1114,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/folder/20300042
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/folder/203000425147/share_links?page_id=0' \
@@ -821,6 +1133,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/folder/20300042
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
+| `target_folder_id` | `body` | `int64` | 目标文件夹id |
 
 **Curl Command**:
 ```bash
@@ -840,6 +1159,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/1790000
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/179000000087/restore_from_trash' \
@@ -853,6 +1178,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/folder/1790000
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 文件夹id |
 
 **Curl Command**:
 ```bash
@@ -932,6 +1263,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/group/list' \
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 群组id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/group/{id}/users' \
@@ -946,6 +1283,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/group/{id}/user
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `query_words` | `query` | `string` | 搜索关键词，不能为空 |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/item/search' \
@@ -959,6 +1302,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/item/search' \
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `library_id` | `body` | `string` | 知识库id |
+| `user_roles` | `body` | `array<object>` | 用户角色列表 |
 
 **Curl Command**:
 ```bash
@@ -1020,6 +1370,14 @@ curl --location 'https://open.fangcloud.com/api/v2/knowledge/chatStream' \
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `library_id` | `body` | `string` | 知识库id |
+| `name` | `body` | `string` | 知识目录名称 |
+| `parent_document_id` | `body` | `string` | 上级知识目录id，若为根目录则传：0 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/create_document' \
@@ -1035,6 +1393,15 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/create_d
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `content` | `body` | `string` | 知识库简介 |
+| `name` | `body` | `string` | 知识库名称 |
+| `pic_file_id` | `body` | `string` | 知识库图标地址，可填默认值：https://s0.ssl.qhres2.com/static/a3e6a8389f34868e.svg |
+| `questions` | `body` | `array<string>` | 知识库推荐问题 |
 
 **Curl Command**:
 ```bash
@@ -1052,6 +1419,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/create_l
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `document_ids` | `body` | `array<string>` | 删除知识目录id列表 |
+| `library_id` | `body` | `string` | 知识库id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/delete_document' \
@@ -1067,6 +1441,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/delete_d
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `book_ids` | `body` | `array<string>` | 删除文件id列表 |
+| `library_id` | `body` | `string` | 知识库id |
 
 **Curl Command**:
 ```bash
@@ -1084,6 +1465,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/delete_f
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `library_id` | `body` | `string` | 知识库id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/delete_library' \
@@ -1099,6 +1486,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/delete_l
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `library_id` | `body` | `string` | 知识库id |
+| `user_id` | `body` | `int64` | 用户id |
 
 **Curl Command**:
 ```bash
@@ -1116,6 +1510,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/delete_l
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `book_id` | `body` | `string` | 知识库文件id |
+| `library_id` | `body` | `string` | 知识库id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/download_file' \
@@ -1131,6 +1532,15 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/download
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `book_id` | `body` | `string` | 知识库文件id |
+| `library_id` | `body` | `string` | 知识库id |
+| `page_no` | `body` | `int64` | 页码 |
+| `page_size` | `body` | `int64` | 页容量 |
 
 **Curl Command**:
 ```bash
@@ -1153,6 +1563,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/get_book
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `train_file_ids` | `body` | `array<int64>` | 训练文件id列表 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/get_train_file_status' \
@@ -1171,6 +1587,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/get_trai
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `document_id` | `body` | `string` | 知识目录id，顶级目录id时候传0 |
+| `library_id` | `body` | `string` | 知识库id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/list_document' \
@@ -1187,6 +1610,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/list_doc
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `document_id` | `body` | `string` | 知识目录id |
+| `library_id` | `body` | `string` | 知识库id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/list_document_user' \
@@ -1202,6 +1632,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/list_doc
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `page_number` | `body` | `int64` | 查询页数 |
 
 **Curl Command**:
 ```bash
@@ -1233,6 +1669,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/list_lib
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `library_id` | `body` | `string` | 知识库id |
+| `page_num` | `body` | `int64` | 页码 |
+| `page_size` | `body` | `int64` | 页容量 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/list_library_user' \
@@ -1248,6 +1692,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/list_lib
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `book_ids` | `body` | `array<string>` | 知识库文件列表 |
+| `library_id` | `body` | `string` | 知识库id |
 
 **Curl Command**:
 ```bash
@@ -1265,6 +1716,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/pack_dow
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `files` | `body` | `array<object>` | 发布文件列表 |
+| `library_id` | `body` | `string` | 知识库id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/publish_file' \
@@ -1280,6 +1738,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/publish_
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `document_id` | `body` | `string` | 知识目录id |
+| `library_id` | `body` | `string` | 知识库id |
 
 **Curl Command**:
 ```bash
@@ -1297,6 +1762,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/search_f
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `document_id` | `body` | `string` | 知识目录id |
+| `library_id` | `body` | `string` | 知识库id |
+| `name` | `body` | `string` | 知识目录名称 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/update_document' \
@@ -1312,6 +1785,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/update_d
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `library_id` | `body` | `string` | 知识库id |
+| `role_id` | `body` | `string` | 知识库角色id |
+| `user_id` | `body` | `int64` | 用户id |
 
 **Curl Command**:
 ```bash
@@ -1329,6 +1810,15 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/kbase/update_l
 **Description**:
 获取上传地址后，需要调用上传接口进行真正的上传(header中需要传x-file-name字段：文件的名称)，真正上传完成之后，需要再调用发布接口，才能在知识库中看到文件，上传文件示例：
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `document_id` | `body` | `string` | 知识目录id |
+| `file_name` | `body` | `string` | 文件名称 |
+| `file_size` | `body` | `int64` | 文件大小 |
+| `library_id` | `body` | `string` | 知识库id |
+
 **Curl Command**:
 ```bash
 curl --location 'https://upload01.fangcloud.net/upload/18843c714d4d4216a8ae7fd247a0e261/b9afe9f13fb09e54d4863fe697b60188518cbcd036cdbb71b4d82d824dcff01b' \
@@ -1343,6 +1833,13 @@ curl --location 'https://upload01.fangcloud.net/upload/18843c714d4d4216a8ae7fd24
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `data_type` | `body` | `string` | 数据类型；url（类型为url时：data_value传url地址） file（类型为url时：data_value传云盘文件id） |
+| `data_value` | `body` | `string` | 数据值，url地址或者云盘文件id |
 
 **Curl Command**:
 ```bash
@@ -1359,6 +1856,15 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/add_
 
 **Description**:
 AI知识库版本不支持
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `analysis_method` | `body` | `string` | 解析类型；direct_segment（通用文本类型，支持云盘文件或者文件夹，支持文件类型：docx、txt、pdf、md） qa（问答，只支持云盘文件，支持文件类型：csv、xlsx） table（表格类型，只支持云盘文件，支持文件类型：xlsx） |
+| `data_id` | `body` | `int64` | 数据集id |
+| `file_id` | `body` | `int64` | 文件夹或文件夹id |
+| `file_type` | `body` | `string` | 文件类型；file（文件） folder（文件夹） |
 
 **Curl Command**:
 ```bash
@@ -1411,6 +1917,12 @@ curl --location 'https://open.fangcloud.com/api/v2/knowledge/chatStream' \
 **Description**:
 AI知识库版本不支持
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `name` | `body` | `string` | 数据集名称 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/create_data' \
@@ -1426,6 +1938,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/crea
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `data_id` | `body` | `int64` | 数据集id |
+| `question` | `body` | `string` | 问题 |
 
 **Curl Command**:
 ```bash
@@ -1443,6 +1962,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/data
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `name` | `body` | `string` | 知识员工名称 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/create_gpt' \
@@ -1458,6 +1983,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/crea
 
 **Description**:
 AI知识库版本不支持
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `data_id` | `body` | `int64` | 数据集id |
 
 **Curl Command**:
 ```bash
@@ -1475,6 +2006,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/dele
 **Description**:
 AI知识库版本不支持
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `file_train_id` | `body` | `int64` | 训练任务id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/delete_train_file' \
@@ -1490,6 +2027,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/dele
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `knowledge_gpt_id` | `body` | `int64` | 知识员工id |
 
 **Curl Command**:
 ```bash
@@ -1507,6 +2050,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/dele
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `knowledge_gpt_id` | `body` | `int64` | 知识员工id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/edit_gpt_info' \
@@ -1522,6 +2071,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/edit
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `ai_file_id` | `body` | `int64` | ai文件训练得到的数据集id |
 
 **Curl Command**:
 ```bash
@@ -1539,6 +2094,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/get_
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `question` | `body` | `string` | 问题 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/get_ai_search_recommend' \
@@ -1554,6 +2115,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/get_
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `knowledge_gpt_id` | `body` | `int64` | 知识员工id |
 
 **Curl Command**:
 ```bash
@@ -1571,6 +2138,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/getC
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `knowledge_gpt_id` | `body` | `int64` | 知识员工id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/get_gpt_info' \
@@ -1587,6 +2160,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/get_
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `gpt_id` | `body` | `int64` | 知识员工id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/get_gpt_token' \
@@ -1602,6 +2181,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/get_
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `query` | `body` | `string` | 问题 |
 
 **Curl Command**:
 ```bash
@@ -1661,6 +2246,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/list
 **Description**:
 AI知识库版本不支持
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `data_id` | `body` | `int64` | 数据集id |
+| `page_no` | `body` | `int64` | 页码 |
+| `page_size` | `body` | `int64` | 页容量 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/list_data_qa' \
@@ -1676,6 +2269,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/list
 
 **Description**:
 AI知识库版本不支持
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `data_id` | `body` | `int64` | 数据集id |
+| `page_no` | `body` | `int64` | 页码 |
+| `page_size` | `body` | `int64` | 页容量 |
 
 **Curl Command**:
 ```bash
@@ -1693,6 +2294,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/list
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `type` | `body` | `string` | 类型 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/list_square_gpt' \
@@ -1709,6 +2316,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/list
 **Description**:
 AI知识库版本不支持
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `data_id` | `body` | `int64` | 数据集id |
+| `task_type` | `body` | `string` | 类型；direct_segment（文件，直接分段） csv_qa_import（CSV问答导入） |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/list_train_file' \
@@ -1724,6 +2338,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/knowledge/list
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 审阅id |
 
 **Curl Command**:
 ```bash
@@ -1755,6 +2375,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/review/create'
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 审阅id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/review/edit/{id}' \
@@ -1771,6 +2397,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/review/edit/{i
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 审阅id |
+| `page_id` | `query` | `int32` | 页码 |
+| `page_capacity` | `query` | `int32` | 每页容量 |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/review/comment_list/{id}' \
@@ -1785,6 +2419,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/review/comment_
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 审阅id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/review/info/{id}' \
@@ -1798,6 +2438,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/review/info/{id
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `content` | `body` | `string` | 审阅评论内容 |
 
 **Curl Command**:
 ```bash
@@ -1815,6 +2461,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/review_comment
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 删除的审阅评论id |
+
 **Curl Command**:
 ```bash
 curl --location --request DELETE 'https://open.fangcloud.com/api/v2/review_comment/delete/{id}' \
@@ -1828,6 +2480,13 @@ curl --location --request DELETE 'https://open.fangcloud.com/api/v2/review_comme
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `access` | `body` | `string` | 权限范围；company：公司范围内的; public：所有人; collaborators：指定的成员或指定的群组 |
+| `due_time` | `body` | `string` | 到期时间(格式如:2018-10-17) / never_expire 表示用不过期 |
 
 **Curl Command**:
 ```bash
@@ -1870,6 +2529,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/share_link/cre
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `unique_name` | `path` | `string` | 分享标识符（分享链接最后面的唯一标识符） |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/share_link/{unique_name}/info' \
@@ -1883,6 +2548,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/share_link/{uni
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `unique_name` | `path` | `string` | 分享标识符（分享链接最后面的唯一标识符） |
 
 **Curl Command**:
 ```bash
@@ -1898,6 +2569,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/share_link/{uni
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `unique_name` | `path` | `string` | 分享标识符（分享链接最后面的唯一标识符） |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/share_link/{unique_name}/close' \
@@ -1911,6 +2588,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/share_link/{un
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `unique_name` | `path` | `string` | 分享标识符（分享链接最后面的唯一标识符） |
+| `access` | `body` | `string` | 权限范围；company：公司范围内的; public：所有人; collaborators：指定的成员或指定的群组 |
+| `due_time` | `body` | `string` | 到期时间(格式如:2018-10-17) / never_expire 表示用不过期 |
 
 **Curl Command**:
 ```bash
@@ -1956,6 +2641,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/share_link/{un
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `tag_names` | `body` | `array<string>` | 常用标签名称列表 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/tag/add_common_list' \
@@ -1986,6 +2677,15 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/tag/common_list
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `tag_name` | `query` | `string` | 标签名称 |
+| `sort_by` | `query` | `string` | 排序方式；示例: `name, date, size` |
+| `sort_direction` | `query` | `string` | 排序顺序；示例: `desc, asc` |
+| `page_id` | `query` | `int32` | 页码，从1开始 |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/tag/filter_items_by_tag_name' \
@@ -1999,6 +2699,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/tag/filter_item
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `body` | `string` | 项目id；文件或者文件夹id |
+| `type` | `body` | `string` | 项目类型；file:文件类型; folder:文件夹类型 |
 
 **Curl Command**:
 ```bash
@@ -2015,6 +2722,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/tag/item_add_t
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `body` | `string` | 项目id；文件或者文件夹id |
+| `tag_ids` | `body` | `array<int64>` | 标签id列表 |
+| `type` | `body` | `string` | 项目类型；file:文件类型; folder:文件夹类型 |
 
 **Curl Command**:
 ```bash
@@ -2045,6 +2760,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/tag/list' \
 
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `common_tag_ids` | `body` | `array<int64>` | 常用标签id列表 |
 
 **Curl Command**:
 ```bash
@@ -2108,6 +2829,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/trash/list' \
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `url` | `query` | `string` | 授权的url |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/user/as_user_code' \
@@ -2150,6 +2877,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/user/department
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 用户id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/user/{id}/info' \
@@ -2180,6 +2913,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/user/space_usag
 
  **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 该用户的id |
+| `profile_pic_key` | `query` | `string` | 获取头像的key，可以通过https://open.fangcloud.com/api/v2/user/info（获取自身用户信息）的接口获得 |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/user/{id}/profile_pic_download' \
@@ -2208,6 +2948,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/user/search' \
 **Description**:
 **需要使用用户token，根据用户id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `name` | `body` | `string` | 新名字，长度不能超过30个字符 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/user/update' \
@@ -2223,6 +2969,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/user/update' \
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门ID |
+| `user_id` | `body` | `int64` | 用户id |
 
 **Curl Command**:
 ```bash
@@ -2240,6 +2993,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/departme
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `name` | `body` | `string` | 部门名称，长度不能超过30个字符 |
+| `parent_id` | `body` | `int64` | 父部门id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/department/create' \
@@ -2256,6 +3016,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/departme
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门ID |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/department/{id}/delete' \
@@ -2269,6 +3035,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/departme
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门ID |
 
 **Curl Command**:
 ```bash
@@ -2284,6 +3056,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/departmen
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `operator_id` | `query` | `int32` | 操作人user_id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/department/space_list' \
@@ -2297,6 +3075,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/departmen
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `platform_id` | `path` | `int64` | 平台id，私有部署一般默认为：2 |
 
 **Curl Command**:
 ```bash
@@ -2314,6 +3098,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/departme
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/department/{id}/info' \
@@ -2327,6 +3117,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/departmen
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门ID |
+| `user_id` | `body` | `int64` | 用户id |
 
 **Curl Command**:
 ```bash
@@ -2344,6 +3141,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/departme
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门id |
+| `name` | `body` | `string` | 部门名称，长度不能超过30个字符 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/department/{id}/update' \
@@ -2359,6 +3163,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/departme
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门id |
 
 **Curl Command**:
 ```bash
@@ -2376,6 +3186,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/departme
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 部门ID |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/department/{id}/users' \
@@ -2389,6 +3205,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/departmen
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 群组id |
+| `user_id` | `body` | `int64` | 用户id |
 
 **Curl Command**:
 ```bash
@@ -2406,6 +3229,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/group/{i
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `name` | `body` | `string` | 群组名称，长度不能超过30个字符 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/group/create' \
@@ -2421,6 +3250,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/group/cr
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 群组id |
 
 **Curl Command**:
 ```bash
@@ -2452,6 +3287,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/group/lis
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 群组id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/group/{id}/info' \
@@ -2465,6 +3306,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/group/{id
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 群组id |
+| `user_id` | `body` | `int64` | 用户id |
 
 **Curl Command**:
 ```bash
@@ -2482,6 +3330,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/group/{i
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 群组id |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/group/{id}/update' \
@@ -2497,6 +3351,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/group/{i
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 群组id |
 
 **Curl Command**:
 ```bash
@@ -2528,6 +3388,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/log/acti
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `end_date` | `body` | `string` | 截止时间，格式为：yyyy-MM-dd, 不得迟于今日 |
+| `start_date` | `body` | `string` | 起始时间，格式为：yyyy-MM-dd, 不得早于今日前90天 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/log/log_info' \
@@ -2543,6 +3410,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/log/log_
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `end_date` | `body` | `string` | 截止时间，格式为：yyyy-MM-dd, 不得迟于今日 |
+| `start_date` | `body` | `string` | 起始时间，格式为：yyyy-MM-dd, 不得早于今日前90天 |
 
 **Curl Command**:
 ```bash
@@ -2560,6 +3434,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/log/log_
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `date` | `body` | `string` | 日期，格式为：yyyy-MM-dd |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/log/log_list_by_pagination' \
@@ -2576,6 +3456,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/log/log_
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 平台id，私有部署一般默认为：2 |
+| `department_id` | `query` | `string` | 部门个性化id |
+| `yfy_department_id` | `query` | `int64` | 亿方云平台上的部门id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/platform/{id}/mapping_department' \
@@ -2589,6 +3477,14 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/platform/
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 平台id，私有部署一般默认为：2 |
+| `group_id` | `query` | `string` | 群组个性化id |
+| `yfy_group_id` | `query` | `int64` | 亿方云平台上的群组id |
 
 **Curl Command**:
 ```bash
@@ -2604,6 +3500,14 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/platform/
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 平台id，私有部署一般默认为：2 |
+| `user_id` | `query` | `string` | 用户个性化id，user_id和yfy_user_id两个参数二选一，若都传则使用user_id |
+| `yfy_user_id` | `query` | `int64` | 亿方云平台上的用户id，user_id和yfy_user_id两个参数二选一，若都传则使用user_id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/platform/{id}/mapping_user' \
@@ -2617,6 +3521,13 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/platform/
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 平台id，私有部署一般默认为：2 |
+| `departments` | `body` | `array<object>` | 同步的部门信息 |
 
 **Curl Command**:
 ```bash
@@ -2634,6 +3545,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/platform
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 平台id，私有部署一般默认为：2 |
+| `groups` | `body` | `array<object>` | 同步的群组信息 |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/platform/{id}/sync_groups' \
@@ -2649,6 +3567,13 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/platform
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 平台id，私有部署一般默认为：2 |
+| `users` | `body` | `array<object>` | 同步的用户信息 |
 
 **Curl Command**:
 ```bash
@@ -2682,6 +3607,12 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/user/cre
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 用户ID |
+
 **Curl Command**:
 ```bash
 curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/user/{id}/delete' \
@@ -2698,6 +3629,14 @@ curl --location --request POST 'https://open.fangcloud.com/api/v2/admin/user/{id
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `identifier` | `query` | `string` | 用户标识，type为simple_phone_or_email时传手机或者邮箱，type为user_ticket时传第三方id |
+| `type` | `query` | `string` | 用户标识类型；示例: `simple_phone_or_email(手机号或者邮箱), user_ticket(第三方id)` |
+| `platform_id` | `query` | `int64` | 平台id，私有部署一般默认为：2 |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/user/get_login_params' \
@@ -2711,6 +3650,14 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/user/get_
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `identifier` | `query` | `string` | 用户标识，type为simple_phone_or_email时传手机或者邮箱，type为user_ticket时传第三方id |
+| `type` | `query` | `string` | 用户标识类型；示例: `simple_phone_or_email(手机号或者邮箱), user_ticket(第三方id)` |
+| `platform_id` | `query` | `int64` | 平台id，私有部署一般默认为：2 |
 
 **Curl Command**:
 ```bash
@@ -2726,6 +3673,14 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/user/get_
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `identifier` | `query` | `string` | 用户标识，type为simple_phone_or_email时传手机或者邮箱，type为user_ticket时传第三方id |
+| `type` | `query` | `string` | 用户标识类型；示例: `simple_phone_or_email(手机号或者邮箱), user_ticket(第三方id)` |
+| `platform_id` | `query` | `int64` | 平台id，私有部署一般默认为：2 |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/user/get_user_info' \
@@ -2740,6 +3695,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/user/get_
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
 
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 用户id |
+
 **Curl Command**:
 ```bash
 curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/user/{id}/info' \
@@ -2753,6 +3714,12 @@ curl --location --request GET 'https://open.fangcloud.com/api/v2/admin/user/{id}
 
 **Description**:
 **需要使用企业token，根据企业id生成，详情参考上面生成的token文档**
+
+**Required Parameters**:
+
+| Name | In | Type | Description |
+| --- | --- | --- | --- |
+| `id` | `path` | `int64` | 用户ID |
 
 **Curl Command**:
 ```bash

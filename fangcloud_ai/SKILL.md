@@ -79,6 +79,33 @@ Skill 自动从环境变量获取 Token：
 3. 调用 `POST /v2/collection/create`（传入 `target_folder_id`、`name` 等参数）为该文件夹创建公网收集任务。
 4. 提取接口返回的收集任务链接（如提取接口返回的收集 URL 或其他标识），提供给用户用于文件收集。后续可通过 `GET /v2/collection/get_files_info` 查询收集状态。
 
+### 5. 云盘文件自动分类与整理 (NEW)
+**目标**: 自动识别指定目录中的文件类型，创建分类目录并将文件移动或复制到对应目录中。
+**执行流程**:
+1. **获取 ID**: 从用户提供的 URL（如 `preview={id}`）或直接提供的 ID 中提取目标文件夹 ID。
+2. **读取列表**: 调用 `GET /v2/folder/{id}/children` 获取目录下所有文件列表。
+3. **智能分类**: 分析文件后缀或名称（如 `.pdf`、`.docx`、`.xlsx`、`.jpg`），制定分类方案（如“文档”、“图片”、“表格”）。
+4. **用户确认**: 向用户展示分类建议，并询问是执行“移动 (Move)”还是“复制 (Copy)”。
+5. **执行整理**:
+   - 调用 `POST /v2/folder/create` 创建分类子文件夹。
+   - 遍历文件，根据用户选择调用 `POST /v2/file/{id}/move` 或 `POST /v2/file/{id}/copy` 将其分配到对应目录。
+6. **结果反馈**: 整理完成后通知用户结果。
+
+### 6. 云盘使用周报自动生成 (NEW)
+**目标**: 通过分析最近操作的文件，生成用户的使用周报，并提供优化建议。
+**执行流程**:
+1. **获取数据**: 调用 `GET /v2/file/recent_items?limit=50` 获取最近操作的文件列表（尽可能多抓取）。
+2. **时间筛选**: 根据当前时间戳，统计本周（通常为过去 7 天）操作过的文件。
+3. **内容分析**: 
+   - 提取文件名、类型、修改时间。
+   - 使用 AI 总结本周的工作重心（如：“本周主要在处理产研相关的 Excel 文档”）。
+   - 统计文件分布（如：修改了 5 个表格，创建了 2 个 PDF）。
+4. **生成周报**:
+   - **本周回顾**: 总结操作的文件类型、项目相关性。
+   - **工作重心**: 自动识别最常操作的文件所属项目。
+   - **使用建议**: 根据使用习惯提供建议（如：“建议将本周频繁修改的文档归档到特定项目文件夹”）。
+5. **呈现报告**: 将汇总结果以 Markdown 格式呈现。
+
 ## 执行工具
 
 可以使用内置的 Python 客户端执行请求：
@@ -86,3 +113,9 @@ Skill 自动从环境变量获取 Token：
 - **智能体对话**: `python3 scripts/chat_agent.py "你的问题" [--agent-id ID] [--type TYPE] [--libs LIBS]`
   - 示例: `python3 scripts/chat_agent.py "你好" --agent-id 3776`
   - 示例: `python3 scripts/chat_agent.py "帮我总结文档" --type AI_LIBRARY --libs 123,456`
+
+- **目录自动整理工具**: `python3 scripts/organize_folder.py [--folder-id ID | --folder-url URL] [--mode move|copy] [--dry-run]`
+  - 说明: 按文件后缀自动分类（文档/表格/图片/代码/演示/压缩包/其他），自动创建分类目录并批量移动或复制文件。
+  - 示例(先预演): `python3 scripts/organize_folder.py --folder-url "https://v2.fangcloud.com/atlas-web/desktop/files?desktop=%2Fdesktop%2Ffiles%2Ffolder%2F501007507161" --dry-run`
+  - 示例(执行移动): `python3 scripts/organize_folder.py --folder-id 501007507161 --mode move`
+  - 示例(执行复制): `python3 scripts/organize_folder.py --folder-id 501007507161 --mode copy`
