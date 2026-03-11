@@ -119,3 +119,12 @@ Skill 自动从环境变量获取 Token：
   - 示例(先预演): `python3 scripts/organize_folder.py --folder-url "https://v2.fangcloud.com/atlas-web/desktop/files?desktop=%2Fdesktop%2Ffiles%2Ffolder%2F501007507161" --dry-run`
   - 示例(执行移动): `python3 scripts/organize_folder.py --folder-id 501007507161 --mode move`
   - 示例(执行复制): `python3 scripts/organize_folder.py --folder-id 501007507161 --mode copy`
+
+- **目录上传工具**: `python3 scripts/upload_directory.py <local_dir> [--remote-root PATH | --remote-parent-id ID] [--conflict-strategy overwrite|rename] [--include-hidden] [--dry-run]`
+  - 说明: 将本地目录递归上传到个人空间，默认会在云端创建同名目录并保持子目录结构；支持二次上传，默认同名走覆盖上传（`overwrite`）；默认不上传隐藏文件/目录（可通过 `--include-hidden` 开启）；支持按云端父目录ID上传（`--remote-parent-id`）。
+  - 示例(先预演): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace --dry-run`
+  - 示例(上传到个人空间根目录): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace`
+  - 示例(上传到指定父路径): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace --remote-root "自动上传测试"`
+  - 示例(上传到指定父目录ID): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace --remote-parent-id 501007507161`
+  - 示例(改为重命名策略): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace --conflict-strategy rename`
+  - 示例(包含隐藏文件): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace --include-hidden`
