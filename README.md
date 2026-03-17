@@ -12,11 +12,12 @@
     -   **智能体对话**: 与亿方云平台上的自定义 AI 智能体进行流式对话。
     -   **知识库检索**: 基于 DeepSeek 等模型，在指定的企业知识库中进行问答。
     -   **最近使用**: 快速获取用户最近操作的文件，无缝衔接工作流。
+-   **🚀 高性能 CLI**: 提供跨平台的 Go 语言编写的命令行工具，无需 Python 环境即可运行。
 
 ## 🛠️ 快速开始
 
 ### 1. 环境准备
-确保你的环境中已安装 Python 3，并配置了必要的环境变量：
+确保你的环境中配置了必要的环境变量：
 
 ```bash
 # 用户级 Token，用于大部分个人操作
@@ -26,30 +27,44 @@ export FANGCLOUD_USER_TOKEN="your_user_token"
 export FANGCLOUD_ADMIN_TOKEN="your_admin_token"
 ```
 
-### 2. 使用示例
+### 2. 使用 Go CLI (推荐)
+本库提供预编译的二进制文件，支持 macOS, Linux, Windows (amd64/arm64)。
 
-#### 智能体对话
-你可以通过脚本直接与亿方云智能体交互：
+#### 获取二进制文件
+在 `fangcloud_ai/cli/release/` 目录下找到对应平台的二进制文件。
+
+#### 常用命令示例
 ```bash
-python3 fangcloud_ai/scripts/chat_agent.py "帮我总结一下最近的文档" --agent-id 3776
+# 获取用户信息
+./fangcloud-macos-arm64 api GET /v2/user/info
+
+# 智能体对话
+./fangcloud-macos-arm64 chat "帮我总结一下最近的文档" --agent-id 3776
+
+# 目录自动整理
+./fangcloud-macos-arm64 organize --folder-id 12345 --mode move
+
+# 目录上传
+./fangcloud-macos-arm64 upload ./local_dir --remote-parent-id 0
 ```
 
-#### 文件搜索与分享
-利用内置客户端执行 API 调用：
-```bash
-# 搜索文件
-python3 fangcloud_ai/scripts/fangcloud_client.py GET "https://open.fangcloud.com/api/v2/item/search?query_words=合同"
+### 3. 使用 Python 脚本 (Legacy)
+如果你需要直接运行 Python 源码，可以使用 `fangcloud_ai/scripts/` 下的工具：
 
-# 创建分享链接
-python3 fangcloud_ai/scripts/fangcloud_client.py POST "https://open.fangcloud.com/api/v2/share_link/create" '{"file_id": 12345}'
+```bash
+python3 fangcloud_ai/scripts/chat_agent.py "你好" --agent-id 3776
 ```
 
 ## 📂 目录结构
 
 -   `fangcloud_ai/`: 核心 Skill 定义。
-    -   `SKILL.md`: Skill 的详细元数据与功能描述。
-    -   `scripts/`: 封装好的 Python 执行工具。
+    -   `cli/`: Go 语言编写的命令行工具源码及预编译二进制。
+        -   `cmd/`: 程序入口。
+        -   `release/`: **预编译二进制文件**，直接分发给用户使用。
+        -   `scripts/`: 构建脚本。
+    -   `scripts/`: Python 执行脚本（Legacy）。
     -   `references/`: API 详细文档与参考资料。
+    -   `SKILL.md`: Skill 的详细元数据与功能描述。
 
 ## 📝 贡献指南
 

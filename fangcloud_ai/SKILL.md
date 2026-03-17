@@ -13,6 +13,102 @@ Skill 自动从环境变量获取 Token：
 - `FANGCLOUD_ADMIN_TOKEN`: 用于 URL 中包含 `admin` 的企业级接口。
 - `FANGCLOUD_USER_TOKEN`: 用于普通用户级接口。
 
+## 运行环境要求
+
+- **首选分发方式**: 使用 Go 版 CLI 二进制，不依赖客户本地 Python。
+- Skill 根目录只保留说明文档和参考资料；所有代码、构建脚本、构建产物、发布产物统一放在 `cli/` 目录中，避免影响 skill 本身目录结构。
+- 运行 Go 二进制只需要配置环境变量：
+  - `FANGCLOUD_USER_TOKEN`
+  - `FANGCLOUD_ADMIN_TOKEN`，仅当访问 admin URL 时需要
+- 如果要分发给外部客户，直接分发 `cli/release/` 目录中的对应平台原始二进制文件。
+
+## 环境与二进制对应关系
+
+- 先判断客户操作系统，再判断 CPU 架构，然后只使用对应的 CLI 二进制。
+- 不要跨环境混用二进制，例如不要在 Windows 上使用 macOS/Linux 文件，也不要在 `arm64` 机器上优先发 `amd64` 版本。
+
+### 平台选择
+
+- Windows `amd64`:
+  - 使用 `cli/release/fangcloud-windows-amd64.exe`
+- Windows `arm64`:
+  - 使用 `cli/release/fangcloud-windows-arm64.exe`
+- macOS Intel `amd64`:
+  - 使用 `cli/release/fangcloud-macos-amd64`
+- macOS Apple Silicon `arm64`:
+  - 使用 `cli/release/fangcloud-macos-arm64`
+- Linux `amd64`:
+  - 使用 `cli/release/fangcloud-linux-amd64`
+- Linux `arm64`:
+  - 使用 `cli/release/fangcloud-linux-arm64`
+
+### 如何判断环境
+
+- Windows:
+  - PowerShell 执行 `$env:PROCESSOR_ARCHITECTURE`
+  - 常见结果：`AMD64`、`ARM64`
+- macOS:
+  - 执行 `uname -m`
+  - 常见结果：`x86_64`、`arm64`
+- Linux:
+  - 执行 `uname -m`
+  - 常见结果：`x86_64`、`aarch64`
+
+### 使用规则
+
+- 如果用户没有明确说自己的环境，先让对方确认操作系统和架构，再发对应二进制。
+- 如果是 Apple Silicon Mac，优先使用 `fangcloud-macos-arm64`，不要默认发 Intel 版。
+- 如果是 Windows 用户，始终发 `.exe` 文件。
+- 如果无法确认架构，但系统是 Windows / Linux 普通办公机，优先尝试 `amd64`；如果确认是 ARM 设备，再切到 `arm64`。
+
+## Go 版 CLI
+
+- **固定代码目录**: `cli/`
+- **源码入口**: `cli/cmd/fangcloud/main.go`
+- **核心实现**: `cli/internal/fangcloud/fangcloud.go`
+- **构建脚本**: `cli/scripts/build_go_cli.sh`
+- **支持命令**:
+  - `fangcloud api <METHOD> <URL或相对路径> [DATA_JSON]`
+  - `fangcloud chat <message> [--agent-id ID] [--type TYPE] [--libs LIBS] [--no-stream]`
+  - `fangcloud organize [--folder-id ID | --folder-url URL] [--mode move|copy] [--dry-run]`
+  - `fangcloud upload <local_dir> [--remote-root PATH | --remote-parent-id ID] [--conflict-strategy overwrite|rename] [--include-hidden] [--dry-run]`
+
+### Go 构建产物
+
+- 基础构建: `./cli/scripts/build_go_cli.sh`
+- macOS 签名构建:
+  - `MACOS_SIGN=1 MACOS_SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" ./cli/scripts/build_go_cli.sh`
+- macOS 签名并公证:
+  - `MACOS_SIGN=1 MACOS_NOTARIZE=1 MACOS_SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" MACOS_NOTARY_PROFILE="notary-profile" ./cli/scripts/build_go_cli.sh`
+- 发布目录:
+  - `cli/release/README.md`
+  - `cli/release/CHECKSUMS.txt`
+  - `cli/release/fangcloud-macos-amd64`
+  - `cli/release/fangcloud-macos-arm64`
+  - `cli/release/fangcloud-linux-amd64`
+  - `cli/release/fangcloud-linux-arm64`
+  - `cli/release/fangcloud-windows-amd64.exe`
+  - `cli/release/fangcloud-windows-arm64.exe`
+- 当前策略:
+  - `GOOS=darwin GOARCH=amd64`
+  - `GOOS=darwin GOARCH=arm64`
+  - `GOOS=linux GOARCH=amd64`
+  - `GOOS=linux GOARCH=arm64`
+  - `GOOS=windows GOARCH=amd64`
+  - `GOOS=windows GOARCH=arm64`
+- Go 版上传逻辑使用原生 multipart HTTP 上传，不再依赖系统 `curl`。
+- macOS 面向普通用户分发时，推荐启用签名；如果要尽量避免 Gatekeeper 首次拦截，推荐启用签名 + notarization。
+- 签名变量:
+  - `MACOS_SIGN=1`
+  - `MACOS_SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)"`
+- 公证变量:
+  - `MACOS_NOTARIZE=1`
+  - `MACOS_NOTARY_PROFILE="notary-profile"`
+- 当前脚本对 standalone CLI 的处理是：
+  - 先 `codesign`
+  - 再用 `notarytool` 提交 zip 包
+  - 不执行 `stapler`，因为单文件 CLI 没有适合的 stapling 目标
+
 ## 核心功能与接口参考
 
 详细接口定义请参考 [references/openapi.md](references/openapi.md)。
@@ -108,23 +204,42 @@ Skill 自动从环境变量获取 Token：
 
 ## 执行工具
 
-可以使用内置的 Python 客户端执行请求：
-- **通用客户端**: `python3 scripts/fangcloud_client.py <METHOD> <URL> [DATA_JSON]`
-- **智能体对话**: `python3 scripts/chat_agent.py "你的问题" [--agent-id ID] [--type TYPE] [--libs LIBS]`
-  - 示例: `python3 scripts/chat_agent.py "你好" --agent-id 3776`
-  - 示例: `python3 scripts/chat_agent.py "帮我总结文档" --type AI_LIBRARY --libs 123,456`
+优先使用 Go 二进制；如需本地源码运行，使用 `cd cli && go run ./cmd/fangcloud ...`。
 
-- **目录自动整理工具**: `python3 scripts/organize_folder.py [--folder-id ID | --folder-url URL] [--mode move|copy] [--dry-run]`
-  - 说明: 按文件后缀自动分类（文档/表格/图片/代码/演示/压缩包/其他），自动创建分类目录并批量移动或复制文件。
-  - 示例(先预演): `python3 scripts/organize_folder.py --folder-url "https://v2.fangcloud.com/atlas-web/desktop/files?desktop=%2Fdesktop%2Ffiles%2Ffolder%2F501007507161" --dry-run`
-  - 示例(执行移动): `python3 scripts/organize_folder.py --folder-id 501007507161 --mode move`
-  - 示例(执行复制): `python3 scripts/organize_folder.py --folder-id 501007507161 --mode copy`
+### 客户使用方式
 
-- **目录上传工具**: `python3 scripts/upload_directory.py <local_dir> [--remote-root PATH | --remote-parent-id ID] [--conflict-strategy overwrite|rename] [--include-hidden] [--dry-run]`
-  - 说明: 将本地目录递归上传到个人空间，默认会在云端创建同名目录并保持子目录结构；支持二次上传，默认同名走覆盖上传（`overwrite`）；默认不上传隐藏文件/目录（可通过 `--include-hidden` 开启）；支持按云端父目录ID上传（`--remote-parent-id`）。
-  - 示例(先预演): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace --dry-run`
-  - 示例(上传到个人空间根目录): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace`
-  - 示例(上传到指定父路径): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace --remote-root "自动上传测试"`
-  - 示例(上传到指定父目录ID): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace --remote-parent-id 501007507161`
-  - 示例(改为重命名策略): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace --conflict-strategy rename`
-  - 示例(包含隐藏文件): `python3 scripts/upload_directory.py ~/dev/workspace/file-check-workspace --include-hidden`
+- macOS / Linux:
+  - `chmod +x fangcloud-macos-arm64`
+  - `./fangcloud-macos-arm64 --help`
+- Windows PowerShell:
+  - `.\fangcloud-windows-amd64.exe --help`
+
+### CLI 子命令
+
+- **通用 API**: `fangcloud api <METHOD> <URL或相对路径> [DATA_JSON]`
+  - 示例: `./fangcloud-macos-arm64 api GET /v2/user/info`
+  - 示例: `./fangcloud-linux-amd64 api POST /v2/share_link/create "{\"file_id\":123}"`
+  - URL 支持完整地址，也支持仅传 `/v2/...` 或 `v2/...`，默认会补成 `https://open.fangcloud.com/api`
+- **智能体对话**: `fangcloud chat "你的问题" [--agent-id ID] [--type TYPE] [--libs LIBS]`
+  - 示例: `./fangcloud-macos-arm64 chat "你好" --agent-id 3776`
+  - 示例: `./fangcloud-linux-amd64 chat "帮我总结文档" --type AI_LIBRARY --libs 123,456`
+- **目录自动整理**: `fangcloud organize [--folder-id ID | --folder-url URL] [--mode move|copy] [--dry-run]`
+  - 示例: `./fangcloud-macos-arm64 organize --folder-id 501007507161 --mode move`
+- **目录上传**: `fangcloud upload <local_dir> [--remote-root PATH | --remote-parent-id ID] [--conflict-strategy overwrite|rename] [--include-hidden] [--dry-run]`
+  - 示例: `./fangcloud-linux-amd64 upload ~/dev/workspace/file-check-workspace --dry-run`
+
+### 兼容说明
+
+- Go 版 CLI 是当前推荐入口和推荐分发形态。
+- Python 版本已经移除，不再作为回退方案保留。
+
+## 打包分发
+
+- **执行构建**: `./cli/scripts/build_go_cli.sh`
+
+### 打包约束
+
+- Go 当前版本使用交叉编译直接输出 6 个目标文件。
+- macOS 正式分发建议使用签名后的二进制；如果用户来自互联网下载，推荐额外做 notarization。
+- 推荐对外分发方式：
+  - 直接发送 `cli/release/` 中对应平台的原始二进制文件
