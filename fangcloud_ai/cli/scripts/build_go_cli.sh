@@ -117,6 +117,20 @@ This folder contains prebuilt Go CLI binaries for Fangcloud.
 - `FANGCLOUD_USER_TOKEN`
 - `FANGCLOUD_ADMIN_TOKEN` when calling admin URLs
 
+## Download By Environment
+
+Use download scripts to save the correct binary into this `release` directory:
+
+```bash
+./cli/scripts/download_release_binary.sh
+```
+
+Windows PowerShell:
+
+```powershell
+.\cli\scripts\download_release_binary.ps1
+```
+
 ## Run Directly
 
 ```bash
@@ -131,11 +145,6 @@ Windows PowerShell:
 .\fangcloud-windows-amd64.exe --help
 .\fangcloud-windows-amd64.exe api GET /v2/user/info
 ```
-
-## macOS Distribution Note
-
-If notarization is enabled during build, prefer distributing the notarized
-`fangcloud-macos-*.zip` archive to macOS end users instead of the raw binary.
 EOF
 }
 
